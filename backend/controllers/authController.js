@@ -12,12 +12,16 @@ module.exports = {
 
             const existingUser = await userRepository.findOne({ where: { username } });
             if (existingUser) {
-                return res.status(400).json({ message: "Username already exists" });
+                return res.status(409).json({ message: "Username already exists" });
             }
 
             const hashedPassword = await bycrypt.hash(password, 10);
-            const newUser = userRepository.create({ username, password: hashedPassword, role });
-            await userRepository.save(newUser);
+            const user = new User({
+                username,
+                password: hashedPassword,
+                role: 'Employee' // Default role
+            });
+            await user.save();
             
             res.status(201).json({ message: "User created successfully"});
         }

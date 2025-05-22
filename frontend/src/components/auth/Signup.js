@@ -19,6 +19,7 @@ const Signup = () => {
       setSuccess(true);
       setTimeout(() => navigate('/login'), 2000);
     } catch (error) {
+      console.error('Signup error:', error.response?.data || error.message);
       setError(error.response?.data?.message || 'Signup failed');
     }
   };

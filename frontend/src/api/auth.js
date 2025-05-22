@@ -1,12 +1,17 @@
 import axios from 'axios';
 
-const API_URL = '/api/auth/';
+const API_URL = '/api/auth';
 
 const signup = (username, password, role) => {
     return axios.post(`${API_URL}/signup`, {
         username,
         password,
         role
+    },{
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        withCredentials: true
     });
 };
 

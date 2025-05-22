@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = '/api/software/';
+const API_URL = '/api/software';
 
 const createSoftware = (name, description, accessLevels, token) => {
     return axios.post(API_URL, {
